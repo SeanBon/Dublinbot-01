@@ -9,8 +9,17 @@ More info about Api.ai webhooks could be found here:
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 # What does the service do?
-It's a weather information fulfillment service that uses [Yahoo! Weather API](https://developer.yahoo.com/weather/).
-The services takes the `geo-city` parameter from the action, performs geolocation for the city and requests weather information from Yahoo! Weather public API. 
+Its a Dublin City information service. This is used in conjunction with API.ai to create a bit that can lookup information about a variety of subjects. 
 
-The service packs the result in the Api.ai webhook-compatible response JSON and returns it to Api.ai.
+current features included are:
+*Check the weather
+*Check DublinBus next bus times (by stop number)
+*Tell a Chuck Norris Joke
+*Search Wikipedia for an article
+*Show music charts for a country
+*Lookup a song title for the artist that sings it.
 
+#Functions
+
+# Python Version
+*Python version 3.6
