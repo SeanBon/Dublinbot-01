@@ -26,8 +26,8 @@ dictTemp=({ '-28':'ridiculously cold! You shouldnt have your phone out in such t
 dictID=({ '200':'thunderstorms and light rain, might see a light show if yer lucky.','201':'thunderstorms and rain.','202':'thunderstorms and heavy rain. Jaysus, almost a monsoon.','210':'light thunderstorms.','211':'thunderstorms. 5 seconds per mile isnt it?','212':'heavy thunderstorms. Careful now!','221':'ragged thunderstorms. Im not even sure what that is to be honest.','230':'thunderstorms and light drizzle.','231':'thunderstorms and drizzle. Only spittin sure!','232':'thunderstorms with heavy drizzle.','300':'light intensity drizzle, sure its only spittin. Be grand!','301':'drizzle, sure its only spittin.','302':'heavy intensity drizzle, pure soft day out. Lovely.','310':'light intensity drizzle rain, a soft aul day.','311':'drizzle rain. There ye are now, irish weather in a nutshell. Drizzle rain','312':'heavy intensity drizzle rain','313':'shower rain and drizzle','314':'heavy shower rain and drizzle','321':'shower drizzle....what even is that!?','500':'light rain','501':'moderate rain','502':'heavy intensity rain. Bring an umbrella.','503':'very heavy rain, wetter than an otters pocket!','504':'extreme rain, Ill give you a tenner if you run out in that in your socks. ','511':'freezing rain','520':'light intensity shower rain','521':'shower rain','522':'heavy intensity shower rain','531':'ragged shower rain','600':'light snow. Sorry, it aint gonna stick','601':'snow','602':'heavy snow, and a chance for snowmen!','611':'sleet....sleet is fairly shite isnt it!?','612':'shower sleet','615':'light rain and snow, get ready for some sludge! hahaha. ','616':'rain and snow','620':'light shower snow','621':'shower snow','622':'heavy shower snow','701':'some mist.','711':'smoke. Someone have a fire going!? wha?','721':'haze','731':'sand, dust whirls','741':'fog, careful out on the seas there','751':'sand, dust whirls','761':'dust','762':'volcanic ash','771':'squalls','781':'tornado','800':'clear skies','801':'a few clouds','802':'some scattered clouds','803':'broken clouds','804':'overcast clouds','900':'a tornado......find a safe place quick! :) ','901':'a tropical storm','902':'a hurricane','903':'pretty cold weather in general','904':'fairly hot weather on the whole','905':'windy weather in general','906':'hail stones','951':'generally calm weather....for now anyway','952':'light breeze','953':'a gentle breeze','954':'a moderate breeze','955':'a fresh breeze','956':'a strong breeze','957':'a high wind, near gale','958':'a gale','959':'a severe gale','960':'a proper storm','961':'a violent storm, watch out, careful now','962':' a hurricane.....if you need me to tell you to get inside, then...well....get inside',})
 dictWind=({ '1':'dead wind, practically no wind at all','2':'light air, barely a breeze at all','3':'light air, barely a breeze at all','4':'light air, barely a breeze at all','5':'light air, barely a breeze at all','6':'light breeze. Nice and fresh.','7':'light breeze. Nice and fresh.','8':'light breeze. Nice and fresh.','9':'light breeze. Nice and fresh.','10':'light breeze. Nice and fresh.','11':'light breeze. Nice and fresh.','12':'gentle breeze, thats lovely now.','13':'gentle breeze','14':'gentle breeze, I like a little wind like this.','15':'gentle breeze. Cmere to me.....go on :P','16':'gentle breeze, thats lovely now.','17':'gentle breeze','18':'gentle breeze, thats lovely now.','19':'gentle breeze','20':'moderate reeze','21':'moderate reeze','22':'moderate reeze','23':'moderate reeze','24':'moderate reeze','25':'moderate reeze','26':'moderate reeze','27':'moderate reeze','28':'moderate reeze','29':'fresh breeze','30':'fresh breeze, blow the cobwebs away :) ','31':'fresh breeze, blow the cobwebs away :) ','32':'fresh breeze, blow the cobwebs away :) ','33':'fresh breeze, tis only whopper i think...not too windy like!','34':'fresh breeze','35':'fresh breeze','36':'fresh breewze, tis only whopper i think...not too windy like!','37':'fresh breeze','38':'fresh breeze','39':'strong breeze','40':'strong breeze, getting a bit on the windy side now.','41':'strong breeze, getting a bit on the windy side now.','42':'strong breeze, pretty windy now. Keep hold of yer hat!','43':'strong breeze, pretty windy now. Keep hold of yer hat!','44':'strong breeze, ye wont be blown over or anything, but sure be careful anyway!','45':'strong breeze, ye wont be blown over or anything, but sure be careful anyway!','46':'strong breeze','47':'strong breeze, ye wont be blown over or anything, but sure be careful anyway!','48':'strong breeze','49':'strong breeze, pretty windy now. Keep hold of yer hat!','50':'high wind, might be worth leaving the umbrella at home. itll probably break','51':'high wind','52':'high wind, might be worth leaving the umbrella at home. itll probably break','53':'high wind','54':'high wind, thats a pretty fast wind...watch out.','55':'high wind, thats a pretty fast wind...watch out.','56':'high wind, right, thats a pretty strong wind we have going. Sure you can nearly take off! hahaha.','57':'high wind, right, thats a pretty strong wind we have going. Sure you can nearly take off! hahaha.','58':'high wind, right, thats a pretty strong wind we have going. Sure you can nearly take off! hahaha.','59':'high wind, right, thats a pretty strong wind we have going. Sure you can nearly take off! hahaha.','60':'high wind, right, thats a pretty strong wind we have going. Sure you can nearly take off! hahaha.','61':'high wind','62':'gale force wind, very high wind altogether!','63':'gale force wind, very high wind altogether!','64':'gale force wind, very high wind altogether!','65':'gale force wind, very high wind altogether!','66':'gale force wind, very high wind altogether!','67':'gale force wind, very high wind altogether!','68':'gale force, would ye schtop....68Kph!!','69':'gale force wind! Careful now, down with this sort of thing!','70':'gale force, very high wind','71':'gale force, very high wind','72':'gale force, very high wind','73':'gale force, very high wind','74':'gale force, very high wind','75':'strong gale','76':'strong gale','77':'strong gale','78':'strong gale','79':'strong gale','80':'strong gale. 80Kph....ive never even experienced such a thing. Whats it like?','81':'strong gale','82':'strong gale','83':'strong gale, beyond fierce windy as they say','84':'strong gale, beyond fierce windy as they say','85':'strong gale, beyond fierce windy as they say','86':'strong gale, beyond fierce windy as they say','87':'strong gale, beyond fierce windy as they say','88':'strong gale','89':'Storm, really high gale force winds now','90':'Storm, really high gale force winds now. ','91':'Storm, really high gale force winds now. ','92':'Storm, really high gale force winds. You should really be indoors at this stage ','93':'Storm, really high gale force winds ','94':'Storm, really high gale force winds. You should really be indoors at this stage ','95':'Storm, really high gale force winds. You should really be indoors at this stage ','96':'Storm, really high gale force winds. You should really be indoors at this stage ','97':'Storm, really high gale force winds ','98':'Storm, really high gale force winds ','99':'Storm, really high gale force winds ','100':'Storm, really high gale force winds ','101':'Storm, really high gale force winds ','102':'Storm, really high gale force winds ','103':'violent storm, practically a hurricane','104':'violent storm, practically a hurricane','105':'violent storm, practically a hurricane','106':'violent storm, practically a hurricane','107':'violent storm, practically a hurricane','108':'violent storm, practically a hurricane','109':'violent storm, practically a hurricane','110':'violent storm, practically a hurricane','111':'violent storm, practically a hurricane','112':'violent storm, practically a hurricane','113':'violent storm, practically a hurricane','114':'violent storm, practically a hurricane','115':'violent storm, practically a hurricane','116':'violent storm, practically a hurricane','117':'violent storm, practically a hurricane','118':'hurricane. Youre in a hurricane. Are you happy with yourself!','119':'bleedin hurricane! run away!!','120':'hurricane with 120Kph wind!! Fook sakes....gerrup the yard with that!','121':'hurricane','122':'hurricane','123':'hurricane...gerrup. Stay inside if you can!','124':'hurricane...gerrup. Stay inside if you can!','125':'hurricane. As the resident chatbot, I recommend you stay inside....probably....im just a chatbot.','126':'hurricane','127':'hurricane','128':'hurricane! I reckon this one could do with being told to Jog right on!!','129':'hurricane! I reckon this one could do with being told to Jog right on!!',})
 startStr=" "
-musixmatchAPIKey=<musixmatch api key>
-apiKey=<OWM api key>
+musixmatchAPIKey=<insert musixmatchAPIKey>
+OWMapiKey=<insert OWMapiKey>
 
 artistIDstr=""
 @app.route('/webhook', methods=['POST'])
@@ -110,7 +110,7 @@ def processRequest(req):
                                 },{
                                 "type":"postback",
                                 "title":"Similar Artisits",
-                                "payload":"show similar "+artistIDstr
+                                "payload":"similar artists "+artistIDstr
                                 }
                 	]
                 }
@@ -138,6 +138,58 @@ def processRequest(req):
             }
 
         return response
+
+    if req.get("result").get("action")=="musixmatch-similar-artists":
+        print("similar artists ======================== ")
+        print("SimilarArtistID===========")
+        similarArtistID=req.get("result").get("parameters").get("artistID")
+        print(similarArtistID)
+        print("baseurl======================")
+        baseurl = "https://api.musixmatch.com/ws/1.1/artist.related.get?artist_id="+similarArtistID+"&apikey="+musixmatchAPIKey
+        print(baseurl)
+        result = urlopen(baseurl).read()
+        print("data===================")
+        data = json.loads(result)
+        print(data)
+        print("similarData=======================")
+        similarData=data.get("message").get("body").get("artist_list")
+        print(similarData)
+        similarRes=[]
+        for similarArtists in similarData:
+            artistName=similarArtists.get('artist').get('artist_name')
+            artistCountry=similarArtists.get('artist').get('artist_country')
+            artistID=similarArtists.get('artist').get('artist_id')
+            artistIDstr=str(artistID)
+            card=card = {
+                        "title": "Artist: " + artistName,
+                        "subtitle": "Country: " + artistCountry,
+                        "buttons": [{
+                                    "type":"postback",
+                                    "title":"Show Albums",
+                                    "payload":"list albums for "+artistIDstr
+                                    }
+                        ]
+                    }
+            similarRes.extend([card])
+        response = {
+            "speech": "You'll have to use facebook messenger for this functionality. Sorry about that! :) ",
+            "displayText": "You'll have to use facebook messenger for this functionality. Sorry about that! :)",
+            "data":{
+               "facebook" : {
+                    "attachment" : {
+                        "type" : "template",
+                        "payload" : {
+                            "template_type" : "generic",
+                            "elements" :similarRes
+
+                            }
+                        }
+                    }
+
+                }
+            }
+        return response
+
 
     if req.get("result").get("action")=="musixmatch-get-artist-tracks":
         print("GETartistID=======================")
@@ -215,7 +267,7 @@ def processRequest(req):
 
     if req.get("result").get("action")=="getOWM":
         city = req.get("result").get("parameters").get("cities")
-        baseurl="http://api.openweathermap.org/data/2.5/weather?id="+city+"&units=metric&APPID="+apiKey
+        baseurl="http://api.openweathermap.org/data/2.5/weather?id="+city+"&units=metric&APPID="+OWMapiKey
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetOWM(data)
