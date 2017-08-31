@@ -4,4 +4,3 @@ pyowm==2.6.1
 wikipedia
 beautifulsoup4
 html2text
-PyLyrics
