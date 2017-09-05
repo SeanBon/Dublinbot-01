@@ -13,6 +13,7 @@ import os
 import itertools
 import wikipedia
 import smtplib
+import feedparser
 
 from flask import Flask
 from flask import request
@@ -26,7 +27,7 @@ startStr=" "
 #vglobal variables
 
 #api keys
-musixmatchAPIKey='inset key'
+musixmatchAPIKey='insert key'
 darSkiesApiKey='insert key'
 
 #dark skies
@@ -35,6 +36,11 @@ minutely=""
 hourly=""
 daily=""
 artistIDstr=""
+
+#getNews
+newsRequestUrl="https://www.rte.ie/news/rss/news-headlines.xml"
+print(newsRequestUrl)
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
@@ -89,8 +95,6 @@ def processRequest(req):
         #TO-DO - implement a check for no song found and respond with a string to the client.
 
         trackData=data.get("message").get("body").get("track_list")
-        print("trackData================")
-        print(trackData)
         trackRes=[]
         for trackDetails in trackData:
             #trackDetails=item
@@ -138,6 +142,7 @@ def processRequest(req):
 
                 }
             }
+        print(response)
         return response
 
     if req.get("result").get("action")=="musixmatch-similar-artists":
@@ -183,14 +188,10 @@ def processRequest(req):
         return response
 
     if req.get("result").get("action")=="musixmatch-get-artist-tracks":
-        print("GETartistID=======================")
         getArtistID= req.get("result").get("parameters").get("artistID")
-        print(getArtistID)
         baseurl = "https://api.musixmatch.com/ws/1.1/artist.albums.get?artist_id="+getArtistID+"&s_release_date=desc&apikey="+musixmatchAPIKey
         result = urlopen(baseurl).read()
         data = json.loads(result)
-        print("data=============")
-        print(data)
         albumData=data.get("message").get("body").get("album_list")
         trackRes=[]
         for albumDetails in albumData:
@@ -203,7 +204,6 @@ def processRequest(req):
             artistID=albumDetails.get('album').get('artist_id')
             artistIDstr=str(artistID)
             artistURL=albumDetails.get('album').get('album_edit_url')
-            print("album card info ========================")
             card = {
                     "title": "Album: " + albumName,
                     "subtitle": "Artist: " + albumArtistName,
@@ -214,11 +214,7 @@ def processRequest(req):
                                 }
                     ]
                 }
-            print(card)
-            print("albumRes====================")
             trackRes.extend([card])
-        print(trackRes)
-        print("startAlbum-Response======================")
         response = {
             "speech": "You'll have to use facebook messenger for this functionality. Sorry about that! :) ",
             "displayText": "You'll have to use facebook messenger for this functionality. Sorry about that! :)",
@@ -257,38 +253,25 @@ def processRequest(req):
         return res
 
     if req.get("result").get("action")=="getDarkSkies":
-        print("start============")
         longitude = req.get("originalRequest").get("data").get("postback").get("data").get("long")
         longStr=str(longitude)
         latitude = req.get("originalRequest").get("data").get("postback").get("data").get("lat")
         latStr=str(latitude)
-        print(longitude)
-        print(latitude)
         baseurl="https://api.darksky.net/forecast/"+darSkiesApiKey+"/"+latStr+","+longStr+"?units=auto"
-        print(baseurl)
         result = urlopen(baseurl).read()
         data = json.loads(result)
-        print(data)
-        print("forecasts")
+        if not data.get('minutely'):
+            minutely=("Sorry buddy, Looks like there's no data for the next hour's forecast for that location. Prepare for the worst and hope for the best I suppose!")
+        else:
+            minutely=data.get('minutely').get('summary')
         currently=data.get('currently').get('summary')
-        print(currently)
-        minutely=data.get('minutely').get('summary')
-        print(minutely)
         hourly=data.get('hourly').get('summary')
-        print(hourly)
         daily=data.get('daily').get('summary')
-        print(daily)
-        print("strings")
         currentlyStr=str(currently)
-        print(currentlyStr)
         minutelyStr=str(minutely)
-        print(minutelyStr)
         hourlyStr=str(hourly)
-        print(hourlyStr)
         dailyStr=str(daily)
-        print(dailyStr)
-        response="There ye are now.....:) Make sure to check back again. Tis fierce changable. \n\nCurrently:\nLook out the window....Heyoooo!\n (ok, fine!...It's "+currentlyStr+")\n\nNext hour:\n"+minutely+"\n\nLater today:\n"+hourlyStr+"\n\nRest of the Week:\n"+dailyStr
-        print(response)
+        response="Here's the forecast now.....:) Make sure to check back again. Can be fierce changable. \n\nCurrently:\nLook out the window....Heyoooo!\n(ok, fine!...It's "+currentlyStr+")\n\nNext hour:\n"+minutely+"\n\nToday in General:\n"+hourlyStr+"\n\nRest of the Week:\n"+dailyStr+"\n\nPowered by DarkSky"
         return {
         #    for item in busList:
                 "speech": response,
@@ -367,6 +350,104 @@ def processRequest(req):
                 }
             }
         return response
+
+    if req.get("result").get("action")=="getNews":
+        print("newsCategory==============")
+        newsCategory = req.get("result").get("parameters").get("newsCategory")
+        newsCategoryStr=str(newsCategory)
+        newsRequestUrl="https://www.rte.ie/news/rss/news-headlines.xml"
+        newsImg="https://lh3.googleusercontent.com/pq3O4a681DBih371ao6DE9v_I8kwyXGbuCXuUaKZSzUt0lgWR_cVE730ageVDzw_1gQ=w300"
+        print("start if elif========================s")
+        if newsCategoryStr == "sports":
+            newsRequestUrl='http://www.rte.ie/rss/sport.xml'
+            newsImg="https://pbs.twimg.com/profile_images/588375673422635010/LE_CyqIy.png"
+        elif newsCategoryStr == 'entertainment':
+            newsRequestUrl = "http://www.dailymail.co.uk/tvshowbiz/index.rss"
+            newsImg="https://assets.materialup.com/uploads/4f5118c7-ca50-4ce7-941f-bd6825fbdb72/avatar.jpg"
+        elif newsCategoryStr == 'business':
+            newsRequestUrl = "https://www.rte.ie/news/rss/business-headlines.xml"
+            newsImg="https://img.rasset.ie/00037501-600.jpg"
+        elif newsCategoryStr == 'gaa':
+            newsRequestUrl = "http://www.rte.ie/rss/gaa.xml"
+            newsImg="https://pbs.twimg.com/profile_images/588375673422635010/LE_CyqIy.png"
+        elif newsCategoryStr == 'nuacht':
+            newsRequestUrl = "https://www.rte.ie/news/rss/nuacht.xml"
+            newsImg="https://img.rasset.ie/000c397e-880.jpg"
+        elif newsCategoryStr == 'rugby':
+            newsRequestUrl = "http://www.rte.ie/rss/rugby.xml"
+            newsImg="https://pbs.twimg.com/profile_images/588375673422635010/LE_CyqIy.png"
+        elif newsCategoryStr == 'racing':
+            newsRequestUrl = "http://www.rte.ie/rss/racing.xml"
+            newsImg="https://pbs.twimg.com/profile_images/588375673422635010/LE_CyqIy.png"
+        print("end if elif")
+        print("newsRequestUrl===============")
+        print(newsRequestUrl)
+        print("feedparser url====================")
+        feed=feedparser.parse(newsRequestUrl)
+        print(feed)
+        print("title=============")
+        title=feed['feed']['title']
+        print(title)
+        newsRes=[]
+        index=0
+        print("start for loop =========================")
+        for item in feed['entries']:
+            title=item['title']
+            titleStr=str(title)
+            summary=item['summary']
+            summaryStr=str(summary)
+            published=item['published']
+            publishedStr=str(published)
+            link=item['link']
+            linkStr=str(link)
+            print(link)
+            #media_content = item['media_content']
+            #for item in media_content:
+            #    imgURL=item['url']
+            #    print("imgURL=============")
+            #    print(imgURL)
+            index=index+1
+            newsCard = {
+                        "title": title,
+                        "subtitle": summary,
+                        "image_url":newsImg,
+                        "buttons": [
+                                    {
+                                    "type": "web_url",
+                                    "title": "View Article",
+                                    "url":link
+                                    }
+                                   ]
+                        }
+            print("card=======")
+            print(newsCard)
+            newsRes.extend([newsCard])
+            print("index==============")
+            print(index)
+            if index == 10:
+                break
+
+        print("end for loop =========================")
+        print("final response")
+        newsResponse={
+            "speech": "Facebook News ",
+            "displayText": "Facebook News ",
+            "data":{
+               "facebook" : {
+                    "attachment" : {
+                        "type" : "template",
+                        "payload" : {
+                            "template_type" : "generic",
+                            "elements" : newsRes
+
+                                    }
+                            }
+                        }
+                    }
+                }
+
+        print(newsResponse)
+        return newsResponse
 
 def makeWebhookResultForGetBus(data):
 
