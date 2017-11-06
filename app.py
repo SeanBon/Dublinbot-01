@@ -27,8 +27,8 @@ startStr=" "
 #vglobal variables
 
 #api keys
-musixmatchAPIKey='insert key'
-darSkiesApiKey='insert key'
+musixmatchAPIKey=''
+darSkiesApiKey=''
 
 #dark skies
 currently=""
@@ -39,7 +39,13 @@ artistIDstr=""
 
 #getNews
 newsRequestUrl="https://www.rte.ie/news/rss/news-headlines.xml"
-print(newsRequestUrl)
+newsImg="https://lh3.googleusercontent.com/pq3O4a681DBih371ao6DE9v_I8kwyXGbuCXuUaKZSzUt0lgWR_cVE730ageVDzw_1gQ=w300"
+
+#getEvents - establish mysql connection
+import pymysql.cursors
+
+# Connect to the database
+
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -355,8 +361,6 @@ def processRequest(req):
         print("newsCategory==============")
         newsCategory = req.get("result").get("parameters").get("newsCategory")
         newsCategoryStr=str(newsCategory)
-        newsRequestUrl="https://www.rte.ie/news/rss/news-headlines.xml"
-        newsImg="https://lh3.googleusercontent.com/pq3O4a681DBih371ao6DE9v_I8kwyXGbuCXuUaKZSzUt0lgWR_cVE730ageVDzw_1gQ=w300"
         print("start if elif========================s")
         if newsCategoryStr == "sports":
             newsRequestUrl='http://www.rte.ie/rss/sport.xml'
@@ -379,6 +383,9 @@ def processRequest(req):
         elif newsCategoryStr == 'racing':
             newsRequestUrl = "http://www.rte.ie/rss/racing.xml"
             newsImg="https://pbs.twimg.com/profile_images/588375673422635010/LE_CyqIy.png"
+        elif newsCategoryStr == 'headlines':
+            newsRequestUrl = "https://www.rte.ie/news/rss/news-headlines.xml"
+            newsImg="https://lh3.googleusercontent.com/pq3O4a681DBih371ao6DE9v_I8kwyXGbuCXuUaKZSzUt0lgWR_cVE730ageVDzw_1gQ=w300"
         print("end if elif")
         print("newsRequestUrl===============")
         print(newsRequestUrl)
@@ -448,6 +455,38 @@ def processRequest(req):
 
         print(newsResponse)
         return newsResponse
+
+    if req.get("result").get("action")=="getEvents":
+        eventDate = ""#req.get("result").get("parameters").get("stopNum")
+        eventVenue = ""
+                                     user='',
+                                     password='',
+                                     db='',
+                                     charset='',
+                                     cursorclass=pymysql.cursors.DictCursor)
+
+        try:
+            with connection.cursor() as cursor:
+                # Read a single record
+                sql = "SELECT * FROM `bonners2_dublinbot`.`events` where `location` like '%button%'"
+                cursor.execute(sql)
+                result = cursor.fetchall()
+                print(result)
+        finally:
+            connection.close()
+        #format result
+
+        #send results back to user
+        eventresult={
+        #    for item in busList:
+                "speech":"events SQL",
+                "displayText":"events SQL",
+                # "data": data,
+                # "contextOut": [],
+                "source": "apiai-weather-webhook-sample"
+        }
+
+        return eventResult
 
 def makeWebhookResultForGetBus(data):
 
